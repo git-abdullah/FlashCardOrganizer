@@ -17,3 +17,10 @@ class Card(models.Model):
     def __str__(self):
         return self.question
     
+    def move(self, solved: bool):
+        new_box = self.box + 1 if solved else BOXES[0]
+        if new_box in BOXES:
+            self.box = new_box
+            self.save()
+
+        return self
